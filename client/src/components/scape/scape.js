@@ -6,6 +6,20 @@ import './scape.css';
 const Scape = () => {
   const {state, dispatch} = useContext(KanascapeContext);
 
+  const compareResults = (a, b) => {
+    let ans;
+    if (a[1][1].length < b[1][1].length && a[0] > b[0]) {
+      ans = 1;
+    } else if (a[0] > b[0]) {
+      ans = 1;
+    } else if (a[1][1].length > b[1][1].length) {
+      ans = 1;
+    } else {
+      ans = -1
+    }
+    return ans;
+  }
+
   const getResults = () => {
     let matches = [];
     state.kanji.n3.forEach(kanji => {
@@ -17,7 +31,7 @@ const Scape = () => {
       })
     })
 
-    matches.sort((a, b) => { return a[0] > b[0] ? 1 : -1; })
+    matches.sort((a, b) => { return compareResults(a, b)})
 
     return (
       <div className="results">
