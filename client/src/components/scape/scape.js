@@ -13,13 +13,11 @@ const Scape = () => {
         if (ex[1].includes(state.query)) {
           console.log(ex[1].indexOf(state.query[0]))
           matches.push([ex[1].indexOf(state.query[0]), ex]);
-          matches.sort((a, b) => {
-            return a[0] < b[0];
-          })
         }
       })
     })
-    console.log(matches);
+
+    matches.sort((a, b) => { return a[0] > b[0] ? 1 : -1; })
 
     return (
       <div className="results">

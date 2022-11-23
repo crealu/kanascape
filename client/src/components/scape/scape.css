@@ -23,7 +23,8 @@
 
 .results {
   float: left;
-  width: 90%;
+  width: 100%;
+  overflow: scroll;
 }
 
 .scape-row {
@@ -39,4 +40,16 @@
 
 .scape-box {
 
+}
+
+.result-kana {
+
+}
+
+.result-kanji {
+  text-align: center;
+}
+
+.result-english {
+  text-align: right;
 }
