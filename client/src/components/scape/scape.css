@@ -1,0 +1,42 @@
+:root {
+  --scape-padding: 40px;
+  --scape-height: calc(100vh - calc(var(--scape-padding) * 2));
+  --scape-row-height: calc(var(--scape-height) / 20);
+  --scape-row-width: calc(var(--scape-col-width) * 3);
+  --scape-col-width: 30%;
+  --scape-font-size: calc(100vh / 20);
+  --box-size: calc(var(--font-size) + 10);
+}
+
+.scape {
+  position: relative;
+  display: block;
+  height: var(--scape-height);
+  padding: var(--scape-padding);
+}
+
+.query {
+  font-size: var(--scape-font-size);
+  text-align: left;
+  border-bottom: 1px solid black;
+}
+
+.results {
+  float: left;
+  width: 90%;
+}
+
+.scape-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, var(--scape-col-width));
+  margin: 0 auto;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  height: var(--scape-row-height);
+}
+
+.scape-box {
+
+}
