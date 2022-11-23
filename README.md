@@ -1,0 +1,2 @@
+# kanascape
+Interactive Japanese alphabet
