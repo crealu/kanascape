@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { KanascapeContext } from '../../context';
 import { KanjiObject, compareResults } from '../../common/general';
 import './scape.css';
+import ResultsView from './resultsview';
 
 const Results = () => {
   const {state, dispatch} = useContext(KanascapeContext);
+  const [theMatches, setTheMatches] = useState([]);
 
   const getResults = () => {
     let matches = [];
@@ -17,27 +19,19 @@ const Results = () => {
     })
 
     matches.sort((a, b) => { return compareResults(a, b)})
-
-    return (
-      <div className="results">
-        {matches.map(match => {
-          return (
-            <div className="scape-row">
-              <div className="scape-box result-kana">{match[1][1]}</div>
-              <div className="scape-box result-kanji">{match[1][0]}</div>
-              <div className="scape-box result-english">{match[1][2]}</div>
-            </div>
-          )
-        })}
-      </div>
-    )
+    // dispatch({ type: 'update matches', payload: matches });
+    setTheMatches(matches);
   }
 
-  return (
-    <div>
-      {state.query != '' ? getResults() : ''}
-    </div>
-  )
+  const returnResultsView = () => {
+    return state.query != ''
+      ? theMatches.map(match => { return <ResultsView result={match[1]} />})
+      : ''
+  }
+
+  useEffect((theMatches) => { getResults() }, [state.query]);
+
+  return <div className="results-view">{returnResultsView()}</div>
 }
 
 export default Results;

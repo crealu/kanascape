@@ -4,6 +4,7 @@
   --scape-row-height: calc(var(--scape-height) / 20);
   --scape-row-width: calc(var(--scape-col-width) * 3);
   --scape-col-width: 33.33%;
+  --scape-col-width-1: 50%;
   --scape-font-size: calc(100vh / 20);
   --box-size: calc(var(--font-size) + 10);
 }
@@ -55,5 +56,83 @@
 }
 
 .result-english {
+  text-align: right;
+}
+
+.scape-row-2 {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, var(--scape-col-width-1));
+  grid-template-rows: repeat(2, 30px);
+  margin: 0 auto;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  height: var(--scape-row-height);
+  margin: 30px 0px;
+}
+
+.scape-row-3 {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, var(--scape-col-width-1));
+  grid-template-rows: repeat(2, 30px);
+  margin: 0 auto;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  height: var(--scape-row-height);
+  margin: 30px 0px;
+}
+
+.scape-row-4 {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, var(--scape-col-width-1));
+  grid-template-rows: repeat(2, 30px);
+  margin: 0 auto;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  height: var(--scape-row-height);
+  margin: 30px 0px;
+}
+
+.scape-row-2-inner div {
+  float: left;
+}
+
+.scape-box-2 {
+  text-align: left;
+}
+
+.result-kana-2 {
+  font-size: 24px;
+}
+
+.result-kanji-2 {
+  font-size: 24px;
+  text-align: right;
+}
+
+.result-kana-3 {
+  font-size: 24px;
+}
+
+.result-english-3 {
+  text-align: right;
+  font-size: 22px;
+}
+
+.result-kana-4 {
+  font-size: 24px;
+}
+
+.result-english-4 {
+  font-size: 22px;
+  text-align: right;
+}
+
+.result-kanji-4 {
   text-align: right;
 }
