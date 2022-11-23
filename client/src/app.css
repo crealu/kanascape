@@ -1,3 +1,7 @@
+:root {
+  --ui-padding: 30px;
+}
+
 body {
   overflow: hidden;
   padding: 0px;
@@ -6,5 +10,5 @@ body {
 .kanascape {
   position: relative;
   display: grid;
-  grid-template-columns: 50vw 50vw;
+  grid-template-columns: repeat(2, calc(50vw - 60px));
 }

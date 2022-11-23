@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 import { kanaGroup } from '../public/data';
-import { reverseString } from './common/kanji';
+import { reverseString } from './common/general';
 
 export const KanascapeContext = createContext();
 

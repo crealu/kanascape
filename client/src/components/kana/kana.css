@@ -4,8 +4,8 @@
   --kana-row-height: calc(var(--kana-height) / 11);
   --kana-row-width: calc(var(--kana-col-width) * 5);
   --kana-col-width: calc(50vw / 8);
-  --kana-font-size: calc(100vh / 20);
-  --kana-box-size: calc(var(--kana-font-size) + 10);
+  --kana-font-size: calc(100vh / 22);
+  --kana-box-size: calc(var(--kana-font-size) + 8);
 }
 
 .kana {
