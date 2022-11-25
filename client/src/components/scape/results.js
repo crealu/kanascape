@@ -10,13 +10,13 @@ const Results = () => {
 
   const getResults = () => {
     let matches = [];
-    state.kanji.n3.forEach(kanji => {
-      kanji.examples.forEach(ex => {
-        if (ex[1].includes(state.query)) {
-          matches.push([ex[1].indexOf(state.query[0]), ex]);
-        }
-      })
-    })
+    // state.kanji.n3.forEach(kanji => {
+    //   kanji.examples.forEach(ex => {
+    //     if (ex[1].includes(state.query)) {
+    //       matches.push([ex[1].indexOf(state.query[0]), ex]);
+    //     }
+    //   })
+    // })
 
     matches.sort((a, b) => { return compareResults(a, b)})
     // dispatch({ type: 'update matches', payload: matches });

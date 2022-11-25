@@ -8,18 +8,26 @@ const App = () => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
 	const fetchKanji = () => {
-		fetch('https://kanji-data.herokuapp.com/n3kanji')
-			.then(res => { return res.json()})
-			.then(data => {
-				console.log(data);
-				localStorage.setItem('kanji', JSON.stringify(data.kanji));
-				dispatch({
-					type: "update kanji",
-					payload: data.kanji
-				});
-			})
-			.catch(err => { console.log(err)})
-		return 'no matches found';
+		let allKanji = [];
+		for (let i = 1; i < 6; i++) {
+			fetch('https://kanji-data.herokuapp.com/n' + i + 'kanji')
+				.then(res => { return res.json()})
+				.then(data => {
+					console.log(data);
+					allKanji.push(JSON.stringify(data.kanji));
+
+				})
+				.then(() => {localStorage.setIem('kanji', allKanji)})
+				.catch(err => { console.log(err)})
+
+			console.log(allKanji);
+		}
+
+		localStorage.setItem('kanji', allKanji);
+		dispatch({
+			type: "update kanji",
+			payload: allKanji
+		});
 	}
 
 	const getStorageKanji = () => {
@@ -31,11 +39,14 @@ const App = () => {
 	}
 
 	useEffect(() => {
-		if (localStorage.getItem('kanji') == null) {
-			fetchKanji();
-		} else {
-			getStorageKanji();
-		}
+		fetchKanji();
+		// getStorageKanji();
+
+		// if (localStorage.getItem('kanji') == null) {
+		// 	fetchKanji();
+		// } else {
+		// 	getStorageKanji();
+		// }
 	}, [])
 
 	return (
