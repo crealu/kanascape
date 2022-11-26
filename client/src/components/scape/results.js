@@ -1,48 +1,37 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect, useCallback, useMemo } from 'react';
 import { KanascapeContext } from '../../context';
 import { KanjiObject, compareResults } from '../../common/general';
-import './scape.css';
+import './results.css';
 import ResultsView from './resultsview';
 
 const Results = () => {
   const {state, dispatch} = useContext(KanascapeContext);
-  const [theMatches, setTheMatches] = useState(state.matches);
 
-  const searchKanji = () => {
+  const getMatches = () => {
     let matches = [];
-    let exs;
-
-    console.log(state.kanji[0].examples[0][1].includes('い'));
-
     for (let i = 0; i < state.kanji.length; i++) {
       for (let j = 0; j < state.kanji[i].examples.length; j++) {
-        exs = state.kanji[i].examples[j][1];
-        if (exs.includes(state.query)) {
-          matches.push([exs.indexOf(state.query), state.kanji[i]]);
+        const example = state.kanji[i].examples[j];
+        if (example[1].includes(state.query)) {
+          matches.push([example.indexOf(state.query), example]);
         }
       }
     }
-
     return matches;
-  }
+  };
 
-  const getResults = async () => {
-    const matches = await searchKanji();
-    console.log(matches[0])
+  const updateResults = useCallback( () => {
+    const matches = state.query == '' ? [] : getMatches();
     dispatch({ type: 'update matches', payload: matches });
-    setTheMatches(matches);
-    // matches.sort((a, b) => { return compareResults(a, b) })
-  }
+  }, [state.query]);
 
-  const returnResultsView = () => {
-    getResults();
+  useEffect(() => { updateResults() }, [state.query])
 
-    return state.query != ''
-      ? theMatches.map(match => { return <ResultsView result={match[1]} />})
-      : ''
-  }
-
-  return <div className="results-view">{returnResultsView()}</div>
+  return (
+    <div className="results-view">
+      {state.matches.map(match => { return <ResultsView result={match[1]}/> })}
+    </div>
+  )
 }
 
 export default Results;

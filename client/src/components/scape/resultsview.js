@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { KanascapeContext } from '../../context';
-import './scape.css';
+import './results.css';
 import { View1, View2, View3, View4 } from './views';
 
 const ResultsView = ({ result }) => {

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import './scape.css';
+import './results.css';
 
 const View1 = ({ result }) => {
   return (
