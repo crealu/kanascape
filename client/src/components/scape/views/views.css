@@ -1,12 +1,3 @@
-.results-view {
-  overflow-y: scroll;
-  height: calc(100vh - 200px);
-}
-
-.results-view::-webkit-scrollbar {
-  display: none;
-}
-
 .scape-row {
   position: relative;
   display: grid;
@@ -16,14 +7,6 @@
   right: 0px;
   width: 100%;
   height: var(--scape-row-height);
-}
-
-.scape-box {
-
-}
-
-.result-kana {
-
 }
 
 .result-kanji {

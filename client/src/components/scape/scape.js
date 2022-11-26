@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { KanascapeContext } from '../../context';
 import './scape.css';
-import Results from './results';
-import Criteria from './criteria';
+import Results from './results/results';
+import Criteria from './criteria/criteria';
 
 const Scape = () => {
   const {state, dispatch} = useContext(KanascapeContext);

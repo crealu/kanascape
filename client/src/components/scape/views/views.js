@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import './results.css';
+import './views.css';
 
 const View1 = ({ result }) => {
   return (
@@ -17,7 +17,7 @@ const View2 = ({ result }) => {
       <div className="scape-box-2 result-kana-2">{result[1]}</div>
       <div className="scape-box-2 result-kanji-2">{result[0]}</div>
       <div className="scape-box-2 result-english-2">{result[2]}</div>
-      <div className="scape-box-2 result-kana"></div>
+      <div className="scape-box-2 result-kana-2"></div>
     </div>
   )
 }
@@ -28,7 +28,7 @@ const View3 = ({ result }) => {
       <div className="scape-box-3 result-kana-3">{result[1]}</div>
       <div className="scape-box-3 result-english-3">{result[2]}</div>
       <div className="scape-box-3 result-kanji-3">{result[0]}</div>
-      <div className="scape-box-3 result-kana"></div>
+      <div className="scape-box-3 result-kana-3"></div>
     </div>
   )
 }

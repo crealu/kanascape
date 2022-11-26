@@ -1,8 +1,16 @@
 import React, { useContext, useEffect, useCallback, useMemo } from 'react';
-import { KanascapeContext } from '../../context';
-import { KanjiObject, compareResults } from '../../common/general';
+import { KanascapeContext } from '../../../context';
+import { KanjiObject, compareResults } from '../../../common/general';
 import './results.css';
-import ResultsView from './resultsview';
+import { View1, View2, View3, View4 } from '../views/views';
+
+
+const views = [
+  {render: (res) => { return <View1 result={res} />}},
+  {render: (res) => { return <View2 result={res} />}},
+  {render: (res) => { return <View3 result={res} />}},
+  {render: (res) => { return <View4 result={res} />}},
+];
 
 const Results = () => {
   const {state, dispatch} = useContext(KanascapeContext);
@@ -29,9 +37,12 @@ const Results = () => {
 
   return (
     <div className="results-view">
-      {state.matches.map(match => { return <ResultsView result={match[1]}/> })}
+      {state.matches.map(match => { return views[state.view].render(match[1]) })}
     </div>
   )
 }
+
+// {state.matches.map(match => { return <ResultsView result={match[1]}/> })}
+
 
 export default Results;

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { KanascapeContext } from '../../context';
-import './scape.css';
+import { KanascapeContext } from '../../../context';
+import './criteria.css';
 
 const Criteria = () => {
   const {state, dispatch} = useContext(KanascapeContext);
