@@ -6,9 +6,10 @@ export const KanascapeContext = createContext();
 
 export const initialState = {
   query: '',
+  prevQuery: '',
   kana: kanaGroup,
   alphabet: 1,
-  kanji: JSON.parse(localStorage.getItem('kanji')),
+  kanji: JSON.parse(localStorage.getItem('kanji')).all,
   view: 0,
   matches: [],
 };
@@ -30,6 +31,8 @@ export function reducer(state, action) {
       return { ...state, view: action.payload }
     case "update matches":
       return { ...state, matches: action.payload }
+    case "set preve query":
+      return { ...state, prevQuery: state.query }
     default:
       return state;
   }

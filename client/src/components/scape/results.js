@@ -6,30 +6,41 @@ import ResultsView from './resultsview';
 
 const Results = () => {
   const {state, dispatch} = useContext(KanascapeContext);
-  const [theMatches, setTheMatches] = useState([]);
+  const [theMatches, setTheMatches] = useState(state.matches);
 
-  const getResults = () => {
+  const searchKanji = () => {
     let matches = [];
-    // state.kanji.n3.forEach(kanji => {
-    //   kanji.examples.forEach(ex => {
-    //     if (ex[1].includes(state.query)) {
-    //       matches.push([ex[1].indexOf(state.query[0]), ex]);
-    //     }
-    //   })
-    // })
+    let exs;
 
-    matches.sort((a, b) => { return compareResults(a, b)})
-    // dispatch({ type: 'update matches', payload: matches });
+    console.log(state.kanji[0].examples[0][1].includes('い'));
+
+    for (let i = 0; i < state.kanji.length; i++) {
+      for (let j = 0; j < state.kanji[i].examples.length; j++) {
+        exs = state.kanji[i].examples[j][1];
+        if (exs.includes(state.query)) {
+          matches.push([exs.indexOf(state.query), state.kanji[i]]);
+        }
+      }
+    }
+
+    return matches;
+  }
+
+  const getResults = async () => {
+    const matches = await searchKanji();
+    console.log(matches[0])
+    dispatch({ type: 'update matches', payload: matches });
     setTheMatches(matches);
+    // matches.sort((a, b) => { return compareResults(a, b) })
   }
 
   const returnResultsView = () => {
+    getResults();
+
     return state.query != ''
       ? theMatches.map(match => { return <ResultsView result={match[1]} />})
       : ''
   }
-
-  useEffect((theMatches) => { getResults() }, [state.query]);
 
   return <div className="results-view">{returnResultsView()}</div>
 }

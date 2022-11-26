@@ -13,6 +13,7 @@ const KanaBox = ({ kana }) => {
   const handleClick = (event) => {
     const clickedKana = event.target.textContent;
     const theType = determineType(clickedKana);
+    dispatch({ type: 'set prev query', payload: ''});
     dispatch({ type: theType, payload: clickedKana });
   }
 

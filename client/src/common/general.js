@@ -4,11 +4,11 @@ export const reverseString = (str) => {
 
 export const compareResults = (a, b) => {
   let ans;
-  if (a[1][1].length < b[1][1].length && a[0] > b[0]) {
+  if (a.length < b.length && a[0] > b[0]) {
     ans = 1;
   } else if (a[0] > b[0]) {
     ans = 1;
-  } else if (a[1][1].length > b[1][1].length) {
+  } else if (a.length > b.length) {
     ans = 1;
   } else {
     ans = -1
