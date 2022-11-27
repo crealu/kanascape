@@ -1,3 +1,9 @@
+:root {
+  --scape-row-width: calc(var(--scape-col-width) * 3);
+  --scape-col-width: 33.33%;
+  --scape-col-width-1: 50%;
+  --scape-col-width-2: 25%;
+}
 .scape-row {
   position: relative;
   display: grid;
@@ -17,6 +23,13 @@
   grid-template-columns: repeat(2, var(--scape-col-width-1));
   grid-template-rows: repeat(2, 30px);
   margin: 30px 0px;
+}
+
+.layout-3 {
+  grid-template-columns: 20% 50% 30%;
+  margin: 40px 0px;
+  height: auto;
+  font-size: 20px;
 }
 
 .scape-box-2 {
@@ -60,4 +73,21 @@
 
 .result-kana-4 {
   font-size: 24px;
+}
+
+.kanji {
+  font-size: 40px;
+}
+
+.meaning {
+  text-align: right;
+}
+
+.expanded {
+  height: 200px;
+}
+
+.examples-inner {
+  grid-column-start: 1;
+  grid-column-end: 4;
 }

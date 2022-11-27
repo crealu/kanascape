@@ -12,6 +12,7 @@ export const initialState = {
   kanji: JSON.parse(localStorage.getItem('kanji')).all,
   view: 0,
   matches: [],
+  filter: 'reading'
 };
 
 export function reducer(state, action) {
@@ -33,6 +34,8 @@ export function reducer(state, action) {
       return { ...state, matches: action.payload }
     case "set preve query":
       return { ...state, prevQuery: state.query }
+    case "add filter":
+      return { ...state, filter: action.payload }
     default:
       return state;
   }

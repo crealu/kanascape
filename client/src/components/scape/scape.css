@@ -2,9 +2,6 @@
   --scape-padding: 40px;
   --scape-height: calc(100vh - calc(var(--scape-padding) * 2));
   --scape-row-height: calc(var(--scape-height) / 20);
-  --scape-row-width: calc(var(--scape-col-width) * 3);
-  --scape-col-width: 33.33%;
-  --scape-col-width-1: 50%;
   --scape-font-size: calc(100vh / 20);
   --box-size: calc(var(--font-size) + 10);
 }

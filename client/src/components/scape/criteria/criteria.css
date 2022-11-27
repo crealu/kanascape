@@ -1,0 +1,91 @@
+.criteria {
+  height: 50px;
+}
+
+.filter {
+  float: left;
+  margin: 10px 20px 0px 0px;
+}
+
+.filter-pair {
+  float: left;
+}
+
+.filter-radio {
+  appearance: none;
+  position: relative;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #999;
+  transition: 0.2s all linear;
+  margin-right: 5px;
+  margin-left: 0px;
+  cursor: pointer;
+}
+
+.filter-radio:checked {
+  border: 6px solid black;
+}
+
+.filter-radio:focus {
+  color: black;
+}
+
+.filter-radio:active {
+  background-color: white;
+  color: black;
+  outline: 1px solid black;
+}
+
+.filter-text {
+  margin-top: 0px;
+  padding-top: 2px;
+}
+
+.toggle-view-btn {
+  height: 20px;
+  padding: 2px 8px;
+  margin-top: 10px;
+  border-top: 2px solid black;
+  border-radius: 20px;
+  float: right;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.center-circle {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  background: black;
+  height: 12px;
+  width: 12px;
+  border-radius: 8px;
+  transition: 0.25s ease;
+}
+
+.toggle-view-btn:hover {
+  border-top: 2px solid lightblue;
+}
+
+.toggle-view-btn:hover .center-circle {
+  background: lightblue;
+}
+
+.toggle-explicit {
+  float: left;
+}
+
+.explicit-checkbox {
+  width: 14px;
+  height: 14px;
+  margin-top: 15px;
+  float: left;
+  cursor: pointer;
+}
+
+.explicit-text {
+  margin: 12px 0px 0px 4px;;
+  float: left;
+}
