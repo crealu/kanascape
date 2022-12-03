@@ -18,7 +18,7 @@ const ReadingView = ({ match }) => {
 
   return (
     <div className="scape-row layout-3" onClick={(e) => handleClick(e)}>
-      <div className="scape-box kanji">{match.kanji[0]}</div>
+      <div className="scape-box kanji reading-view">{match.kanji[0]}</div>
       <div className="scape-box reading">
         <div className="scape-box on-yomi">{match.kanji[1]}</div>
         <div className="scape-box kun-yomi">{match.kanji[2]}</div>

@@ -4,6 +4,7 @@
   --scape-col-width-1: 50%;
   --scape-col-width-2: 25%;
 }
+
 .scape-row {
   position: relative;
   display: grid;
@@ -90,4 +91,8 @@
 .examples-inner {
   grid-column-start: 1;
   grid-column-end: 4;
+}
+
+.reading-view {
+  cursor: pointer;
 }
