@@ -4,6 +4,7 @@ const path = require('path');
 const MongoClient = require('mongodb').MongoClient;
 const port = process.env.PORT || 9100;
 const app = express();
+const pathToBuild = path.join(__dirname, '../client/build');
 
 // const uri = require('keyconfig').MongoURI;
 // const client = new MongoClient(uri, { useNewUrlParser: true })
@@ -15,10 +16,17 @@ const app = express();
 // }
 // connectToDB();
 
-const pathToBuild = path.join(__dirname, '../client/build');
+
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(pathToBuild));
+app.use(express.static('./vanilla'));
+
+// app.get('/vanilla', (req, res) => {
+// 	app.use(express.static(pathToBuild));
+// 	res.sendFile(pathToBuild, 'index.html');
+// });
+
 app.get('/', (req, res) => {
-	res.sendFile(pathToBuild, 'index.html');
-});
+	res.sendFile('kanascape.html', {root: './vanilla'});
+})
+
 app.listen(port, () => console.log('Listening on ' + port));
