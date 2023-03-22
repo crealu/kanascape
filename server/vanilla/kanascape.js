@@ -135,43 +135,61 @@ function updateQuery(event) {
 
 function updateResults(event) {
 	console.log('query changed');
-	// console.log(estate.query);
-	// console.log(event.target.value);
-	let matches = [];
-	const query = estate.query;
+	console.log(estate.query);
+	// const query = estate.query;
+  estate.matches = [];
 
-  for (let i = 0; i < estate.kanji.length; i++) {
-    let on = estate.kanji[i].on;
-    let kun = estate.kanji[i].kun;
-    if (on.includes(query) || kun.includes(query)) {
-      matches.push(estate.kanji[i]);
+  if (estate.query == '') {
+    clearView();
+  } else {
+    for (let i = 0; i < estate.kanji[0].length; i++) {
+      let kanji = estate.kanji[0][i].kanji[0];
+      let on = estate.kanji[0][i].kanji[1];
+      let kun = estate.kanji[0][i].kanji[2];
+      if (on.includes(estate.query) || kun.includes(estate.query)) {
+        if (!inMatches(kanji)) {
+          estate.matches.push(estate.kanji[0][i]);
+        }
+      }
     }
   }
 
-  estate.matches = matches;
-  renderView(matches);
+  renderView();
 }
 
-function renderView(matches) {
-	let resultsView = document.getElementsByClassName('results-view')[0];
-	if (matches.length > 0) {
-		for (let m = 0; m < matches.length; m++) {
-			resultsView.innerHTML += `
-			  <div class="scape-row layout-3">
-		      <div class="scape-box kanji reading-view">${matches[m].kanji}</div>
-		      <div class="scape-box reading">
-		        <div class="scape-box on-yomi">${matches[m].on}</div>
-		        <div class="scape-box kun-yomi">${matches[m].kun}</div>
-		      </div>
-		      <div class="scape-box meaning">${matches[m].meaning}</div>
-		    </div>
-			`
-		}
-	} else {
-		doc.clear(resultsView);
-		resultsView.innerHTMl = '';
-	}
+function inMatches(kanji) {
+  let counted = false;
+  for (let j = 0; j < estate.matches.length; j++) {
+    if (kanji == estate.matches[j].kanji[0]) {
+      counted = true;
+    }
+  }
+  return counted;
+}
+  
+let resultsView = document.getElementsByClassName('results-view')[0];
 
+function renderView() {
+  let resultsHTML = '';
+	for (let m = 0; m < estate.matches.length; m++) {
+    resultsHTML += `
+		  <div class="scape-row layout-3">
+	      <div class="scape-box kanji reading-view">${estate.matches[m].kanji[0]}</div>
+	      <div class="scape-box reading">
+	        <div class="scape-box on-yomi">${estate.matches[m].kanji[1]}</div>
+	        <div class="scape-box kun-yomi">${estate.matches[m].kanji[2]}</div>
+	      </div>
+	      <div class="scape-box meaning">${estate.matches[m].kanji[3]}</div>
+	    </div>
+		`
+	}
+  resultsView.innerHTML = resultsHTML;
+}
+
+function clearView() {
+  while (resultsView.firstChild) {
+    resultsView.removeChild(resultsView.firstChild);
+  }
 }
 
 function assignListeners() {
