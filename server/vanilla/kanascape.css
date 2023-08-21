@@ -67,6 +67,18 @@ body {
   align-content: start;
 }
 
+.kana-row-secondary {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(9, 11%);
+  left: 0px;
+  right: 0px;
+  width: var(--kana-row-width);
+  height: var(--kana-row-height);
+  align-content: start;
+  width: 100%;
+}
+
 .kana-box {
   position: relative;
   display: block;
@@ -281,7 +293,6 @@ body {
 }
 
 @media (max-width: 800px) and (min-width: 200px) {
-
   .kanascape {
     --kana-padding: 20%;
     grid-template-columns: repeat(1, 100%);
@@ -289,7 +300,9 @@ body {
 
   .kana {
     width: 100%;
+    height: auto;
     padding-right: 0px;
+    padding-bottom: 40px;
     margin: 0 auto;
   }
 
@@ -300,10 +313,21 @@ body {
 
   .kana-box {
     text-align: center;
+    -webkit-tap-hightligh-color: transparent;
   }
 
   /* scape */
   .query {
-    width: 100%;
+    width: 90%;
+    border: none;
+  }
+
+  .scape {
+    padding: 10px 20px;
+    overflow-x: hidden;
+  }
+
+  .criteria {
+    display: none;
   }
 }

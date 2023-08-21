@@ -11,8 +11,8 @@ const kanaPrimary = [
   ['ko', 'こ', 'コ'],
   ['sa', 'さ', 'サ'],
   ['shi', 'し', 'シ'],
-  ['se', 'せ', 'セ'],
   ['su', 'す', 'ス'],
+  ['se', 'せ', 'セ'],
   ['so', 'そ', 'ソ'],
   ['ta', 'た', 'タ'],
   ['chi', 'ち', 'チ'],
@@ -40,7 +40,7 @@ const kanaPrimary = [
   ['', '', ''],
   ['yo', 'よ', 'ヨ'],
   ['ra', 'ら', 'ラ'],
-  ['ri', 'リ', 'リ'],
+  ['ri', 'り', 'リ'],
   ['ru', 'る', 'ル'],
   ['re', 'れ', 'レ'],
   ['ro', 'ろ', 'ロ'],
@@ -56,30 +56,94 @@ const kanaPrimary = [
   ['n', 'ん', 'ン']
 ];
 
+const kanaSecondary = [
+  ['a', 'あ', 'ア'],
+  ['ka', 'か', 'カ'],
+  ['sa', 'さ', 'サ'],
+  ['ta', 'た', 'タ'],
+  ['na', 'な', 'ナ'],
+  ['ha', 'は', 'ハ'],
+  ['ma', 'ま', 'マ'],
+  ['ya', 'や', 'ヤ'],
+  ['ra', 'ら', 'ラ'],
+
+  ['i', 'い', 'イ'],
+  ['ki', 'き', 'キ'],
+  ['shi', 'し', 'シ'],
+  ['chi', 'ち', 'チ'],
+  ['ni', 'に', 'ニ'],
+  ['hi', 'ひ', 'ヒ'],
+  ['mi', 'み', 'ミ'],
+  ['', '', ''],
+  ['ri', 'り', 'リ'],
+
+  ['u', 'う', 'ウ'],
+  ['ku', 'く', 'ク'],
+  ['su', 'す', 'ス'],
+  ['tsu', 'つ', 'ツ'],
+  ['nu', 'ぬ', 'ヌ'],
+  ['fu', 'ふ', 'フ'],
+  ['mu', 'む', 'ム'],
+  ['yu', 'ゆ', 'ユ'],
+  ['ru', 'る', 'ル'],
+
+  ['e', 'え', 'エ'],
+  ['ke', 'け', 'ケ'],
+  ['se', 'せ', 'セ'],
+  ['te', 'て', 'テ'],
+  ['ne', 'ね', 'ネ'],
+  ['he', 'へ', 'ヘ'],
+  ['me', 'め', 'メ'],
+  ['', '', ''],
+  ['re', 'れ', 'レ'],
+
+  ['o', 'お', 'オ'],
+  ['ko', 'こ', 'コ'],
+  ['so', 'そ', 'ソ'],
+  ['to', 'と', 'ト'],
+  ['no', 'の', 'ノ'],
+  ['ho', 'ほ', 'ホ'],
+  ['mo', 'も', 'モ'],
+  ['yo', 'よ', 'ヨ'],
+  ['ro', 'ろ', 'ロ'],
+
+  ['wa', 'わ', 'ワ'],
+  ['wo', 'を', 'ヲ'],
+  ['n', 'ん', 'ン']
+];
+
 let kanaGroups = [];
 let groups = [];
-kanaPrimary.forEach((group, idx) => {
-  groups.push(group);
-  if ((idx + 1) % 5 == 0) {
-    kanaGroups.push(groups);
-    groups = [];
-  }
-});
 
-function insertKana() {
-	let kana = document.getElementsByClassName('kana')[0];
-	for (let i = 0; i < kanaGroups.length; i++) {
-		let kanaRow = document.createElement('div');
-		kanaRow.classList.add('kana-row');
-		for (let j = 0; j < kanaGroups[i].length; j++) {
-			let kanaBox = document.createElement('div');
-			kanaBox.classList.add('kana-box');
-			kanaBox.innerHTML = kanaGroups[i][j][1];
-			kanaBox.addEventListener('click', updateQuery);
-			kanaRow.appendChild(kanaBox);
-		}
-		kana.appendChild(kanaRow);
-	}
+function insertKana(kanaArray, divisor, className) {
+  kanaArray.forEach((group, idx) => {
+    groups.push(group);
+    if ((idx + 1) % divisor == 0) {
+      kanaGroups.push(groups);
+      groups = [];
+    } else if (idx + 1 == kanaArray.length) {
+      kanaGroups.push(groups);
+    }
+  });
+  let kana = document.getElementsByClassName('kana')[0];
+  for (let i = 0; i < kanaGroups.length; i++) {
+    let kanaRow = document.createElement('div');
+    kanaRow.classList.add(className);
+    if (divisor == 9) {
+      if (i == kanaGroups.length - 1) {
+        kanaRow.classList.add('kana-row-final');
+      }
+    }
+    for (let j = 0; j < kanaGroups[i].length; j++) {
+      let kanaBox = document.createElement('div');
+      kanaBox.classList.add('kana-box');
+      kanaBox.innerHTML = kanaGroups[i][j][1];
+      kanaBox.contentEditable = false;
+      kanaBox.addEventListener('click', updateQuery);
+      kanaRow.appendChild(kanaBox);
+    }
+    kana.appendChild(kanaRow);
+  }
 }
 
 let estate = {
@@ -206,7 +270,13 @@ function assignListeners() {
 }
 
 function onloads() {
-	insertKana();
+	// insertKanaPrimary();
+  if (window.innerWidth > 800) {
+    insertKana(kanaPrimary, 5, 'kana-row');
+  } else {
+    insertKana(kanaSecondary, 9, 'kana-row-secondary');
+  }
+  // insertKanaSecondary();
 	assignListeners();
 }
 
