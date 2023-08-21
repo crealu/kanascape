@@ -113,6 +113,14 @@ function reverseString(str) {
 	return (str === '') ? '' : reverseString(str.substr(1)) + str.charAt(0);
 }
 
+function restyleKana(target) {
+  if (!target.classList.contains('kana-box-active')) {
+    target.classList.add('kana-box-active');
+  } else {
+    target.classList.remove('kana-box-active');
+  }
+}
+
 function updateQuery(event) {
 	let clickedKana = event.target.textContent;
   let queryEnd = estate.query != '' ? estate.query[estate.query.length - 1] : '';
@@ -129,7 +137,7 @@ function updateQuery(event) {
 
 	const query = document.getElementsByClassName('query')[0];
 	query.value = estate.query;
-  
+  restyleKana(event.target);
 	updateResults(estate.query);
 }
 
