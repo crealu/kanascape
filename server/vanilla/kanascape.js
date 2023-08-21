@@ -92,17 +92,17 @@ let estate = {
   filter: 'reading'
 }
 
-// let allKanji = [];
-// async function fetchKanji() {  
-//   await fetch('https://kanji-data.herokuapp.com/n3kanji')
-//     .then(res => { return res.json() })
-//     .then(data => { 
-//       estate.kanji.push(data.kanji['n3'])
-//       localStorage.setItem('kanji', JSON.stringify(estate.kanji))
-//     })
-//     .catch(err => { console.log(err) })
-// }
-// fetchKanji();
+let allKanji = [];
+async function fetchKanji() {  
+  await fetch('https://kanji-data.herokuapp.com/n3kanji')
+    .then(res => { return res.json() })
+    .then(data => { 
+      estate.kanji.push(data.kanji['n3'])
+      localStorage.setItem('kanji', JSON.stringify(estate.kanji))
+    })
+    .catch(err => { console.log(err) })
+}
+fetchKanji();
 
 // if (i == 5) {
 //   console.log(allKanji);
@@ -129,7 +129,7 @@ function updateQuery(event) {
 
 	const query = document.getElementsByClassName('query')[0];
 	query.value = estate.query;
-
+  
 	updateResults(estate.query);
 }
 
